@@ -3,7 +3,7 @@ namespace App\Scrapper\Contracts;
 
 Interface SourceInterface
 {
-    public function getUrl($url): string;
+    public function getUrl(): string;
     public function getName(): string;
     public function getWrapperSelector(): string;
     public function getTitleSelector(): string;

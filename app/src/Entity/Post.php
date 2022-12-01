@@ -32,10 +32,17 @@ class Post implements \JsonSerializable
      */
     private string $url;
 
+
     /**
-     * @ORM\Column(type="datetime")
+    * @ORM\Column(type="datetime", precision=7)
+    */
+    private \DateTime $created_at;
+
+
+    /**
+     * @ORM\Column(type="datetime", precision=7)
      */
-    private \DateTime $dateTime;
+    private \DateTime $updated_at;
 
 
     /**
@@ -68,29 +75,24 @@ class Post implements \JsonSerializable
         $this->description = $description;
     }
 
-    public function getUrl(): string
+    public function getCreatedAt(): \DateTime
     {
-        return $this->url;
+        return $this->created_at;
     }
 
-    public function setUrl(string $url): void
+    public function setCreatedAt(\DateTime $dateTime): void
     {
-        $this->url = $url;
+        $this->created_at = $dateTime;
     }
 
-    public function getDateTime(): \DateTime
+    public function getUpdatedAt(): \DateTime
     {
-        return $this->dateTime;
+        return $this->updated_at;
     }
 
-    public function setDateTime(\DateTime $dateTime): void
+    public function setUpdatedAt(\DateTime $dateTime): void
     {
-        $this->dateTime = $dateTime;
-    }
-
-    public function setAuthor(string $author): void
-    {
-        $this->author = $author;
+        $this->updated_at = $dateTime;
     }
 
     public function getImage(): string
@@ -107,10 +109,10 @@ class Post implements \JsonSerializable
     {
         return [
             'title' => $this->getTitle(),
-            'url' => $this->getUrl(),
             'desc' => $this->getDescription(),
-            'date' => $this->getDateTime(),
             'image' => $this->getImage(),
+            'created_at' => $this->getCreatedAt(),
+            'updated_at' => $this->getUpdatedAt(),
         ];
     }
 }

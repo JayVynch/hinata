@@ -1,47 +1,32 @@
 <?php
 namespace App\Scrapper\Source;
 
-use App\Scrapper\Contracts\SourceInterface;
 
-class Scraps implements SourceInterface
+class Scraps
 {
-    public function getUrl($url) :string
+    private $title;
+    private $image;
+    private $desc;
+
+    public function __construct(array $array) 
     {
-        return $url;
+        $this->title = $array['title'];
+        $this->image = $array['image'];
+        $this->desc = $array['desc'];
     }
 
-    public function getName() :string
+    public function getTitle()
     {
-        return 'name';
+        return $this->title;
     }
 
-    public function getWrapperSelector() :string
+    public function getImage()
     {
-        return 'section.list-body .list-item-wrapper';
+        return $this->image;
     }
 
-    public function getTitleSelector() :string
+    public function getDescription()
     {
-        return 'a h4.heading';
-    }
-
-    public function getDescSelector() :string
-    {
-        return 'a p.card-text';
-    }
-
-    public function getDateSelector() :string
-    {
-        return 'time.time';
-    }
-
-    public function getLinkSelector() :string
-    {
-        return 'div.text-content a:nth-child(2)';
-    }
-
-    public function getImageSelector() :string
-    {
-        return 'img.list-img';
+        return $this->desc;
     }
 }
